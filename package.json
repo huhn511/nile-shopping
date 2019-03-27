@@ -13,7 +13,9 @@
     "node-sass": "^4.11.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "@iota/core": "^1.0.0-beta.11",
+    "mam.client.js": "iotaledger/mam.client.js"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

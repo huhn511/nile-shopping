@@ -3,12 +3,18 @@
     <h1>Welcome to the nile shopping demo application!</h1>
     <p>You can browse stores, products and even buy them with iota devnet tokens!</p>
     <router-link to="/products">Discover Products!</router-link>
+    <h2>Your connected to store: {{ shop.data.name }}</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  computed: {
+    shop() {
+      return this.$store.getters.getShopDetails
+    }
+  }
 }
 </script>
 

@@ -18,7 +18,7 @@
 	  <!-- Add the modifier "is-active" to display it on mobile -->
 	  <div class="nav-right nav-menu">
 	    <router-link to="/products" class="nav-item is-tab" exact-active-class="is-active">
-	      Shop
+	      Discover Products
 	    </router-link>
 
 	    <div class="nav-item is-tab" :class="{ 'active-bottom-border': $route.path === '/cart' }">

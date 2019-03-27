@@ -5,17 +5,17 @@
     	<table class="table is-striped">
 		    <thead>
 		      <tr>
-		        <th>Name</th>
+		        <th>Title</th>
 		        <th>Description</th>
 		        <th>Price</th>
 		        <th></th>
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr v-for="product in products" v-bind:key="product.id" track-by="id">
-		        <td>{{product.name}}</td>
-		        <td>{{product.description}}</td>
-		        <td>${{product.price}}</td>
+		      <tr v-for="product in products" v-bind:key="product.data.id" track-by="id">
+		        <td>{{product.data.title}}</td>
+		        <td>{{product.data.desc}}</td>
+		        <td>${{product.data.price}}</td>
 		        <td><button @click='addToCart(product)' class='button is-info'>Add to cart</button></td>
 		      </tr>
 		    </tbody>
@@ -34,7 +34,7 @@ export default {
   }),
   methods: mapActions([
     'addToCart'
-  ])
+	])
 }
 </script>
 

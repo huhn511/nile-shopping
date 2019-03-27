@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as types from './mutation-types'
 
+import { fetchShopDetails, fetchCatalog, fetchProduct } from '../utlls/MAM'
+
+
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -9,26 +12,8 @@ const debug = process.env.NODE_ENV !== 'production'
 // initial state
 const state = {
     added: [],
-    all: [
-        {
-            id: '0',
-            name: 'Product 1',
-            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptu',
-            price: 1
-        },
-        {
-            id: '1',
-            name: 'Product 2',
-            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptu',
-            price: 2
-        },
-        {
-            id: '2',
-            name: 'Product 3',
-            description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptu',
-            price: 3
-        }
-    ]
+    all: [],
+    shop: {}
 }
 
 // getters
@@ -37,22 +22,51 @@ const getters = {
     getNumberOfProducts: state => (state.all) ? state.all.length : 0,
     cartProducts: state => {
         return state.added.map(({ id, quantity }) => {
-            const product = state.all.find(p => p.id === id)
+            const product = state.all.find(p => p.data.id === id)
 
             return {
-                name: product.name,
-                price: product.price,
+                title: product.data.title,
+                price: product.data.price,
                 quantity
             }
         })
-    }
+    },
+    getShopDetails: state => state.shop
 }
 
 // actions
 const actions = {
     addToCart({ commit }, product) {
+        console.log(product)
         commit(types.ADD_TO_CART, {
-            id: product.id
+            id: product.data.id
+        })
+    },
+    fetchShopDetails({ commit }, root ) {
+        console.log("root", root)
+        fetchShopDetails(root, 'TEST').then(function (response) {
+            console.log("response", response)
+            commit("FETCHED_SHOP_DETAILS", response);
+
+            console.log("cat root", response.catalog_root);
+            fetchCatalog(response.catalog_root, 'TEST').then(function (response) { 
+                console.log("fetchCatalog", response)
+                
+                response.forEach(item => {
+                    if (item.status === "add_blueprint") {
+                        fetchProduct(item.data.product).then(function (response) {
+                            console.log("fetchProduct", response)
+                            commit("FETCHED_PRODCUT", response);
+
+                         })
+
+                    }
+                });
+
+
+
+
+            })
         })
     }
 }
@@ -71,7 +85,20 @@ const mutations = {
         } else {
             record.quantity++
         }
-    }
+    },
+    [types.FETCHED_SHOP_DETAILS](state, shop_details) {
+        console.log("FETCHED_SHOP_DETAILS state", state);
+        console.log("shop_details", shop_details);
+        state.shop = shop_details
+
+    }, 
+    [types.FETCHED_PRODCUT](state, product) {
+        console.log("FETCHED_PRODCUT state", state);
+        console.log("product", product);
+        state.all.push(product)
+
+    },
+
 }
 
 // one store for entire application

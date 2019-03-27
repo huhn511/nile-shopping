@@ -14,6 +14,12 @@ import NavBar from './components/NavBar.vue'
     },
     data () {
       return {}
+    },
+    created() {
+      let root = "9SSFOA9EPGVZIYATPCITVUNBMWAZL9LUQQFUKYAPKBBENEXPJRLUUTQXPYXKFMUGTTP9UGJGEHUGKDPRJ"
+      this.$store.dispatch("fetchShopDetails", root).then(() => {
+        console.log("This would be printed after dispatch!!")
+      })
     }
   }
 </script>

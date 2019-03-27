@@ -8,14 +8,14 @@
     <table class="table is-striped" v-show="products.length">
     	<thead>
     		<tr>
-    			<td>Name</td>
+    			<td>Title</td>
     			<td>Price</td>
     			<td>Quantity</td>
     		</tr>
     	</thead>
     	<tbody>
     		<tr v-for="p in products" v-bind:key="p.id">
-        		<td>{{ p.name }}</td>
+        		<td>{{ p.title }}</td>
         		<td>${{ p.price }}</td>
         		<td>{{ p.quantity }}</td>
         	</tr>
