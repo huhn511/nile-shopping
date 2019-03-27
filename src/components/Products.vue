@@ -15,7 +15,7 @@
 		      <tr v-for="product in products" v-bind:key="product.data.id" track-by="id">
 		        <td>{{product.data.title}}</td>
 		        <td>{{product.data.desc}}</td>
-		        <td>${{product.data.price}}</td>
+		        <td>{{product.data.price}} €</td>
 		        <td><button @click='addToCart(product)' class='button is-info'>Add to cart</button></td>
 		      </tr>
 		    </tbody>

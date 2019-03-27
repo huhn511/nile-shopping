@@ -16,13 +16,13 @@
     	<tbody>
     		<tr v-for="p in products" v-bind:key="p.id">
         		<td>{{ p.title }}</td>
-        		<td>${{ p.price }}</td>
+        		<td>{{ p.price }} €</td>
         		<td>{{ p.quantity }}</td>
         	</tr>
         	<tr>
         		<td><b>Total:</b></td>
         		<td></td>
-        		<td><b>${{ total }}</b></td>
+        		<td><b>{{ total }} €</b></td>
         	</tr>
     	</tbody>
 
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
   	checkout(){
-  		alert('Pay us $' + this.total)
+  		alert('Pay us ' + this.total + ' €')
   	}
   }
 }
