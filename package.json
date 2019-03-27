@@ -10,12 +10,13 @@
     "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi "
   },
   "dependencies": {
+    "@iota/core": "^1.0.0-beta.11",
+    "element-ui": "^2.6.3",
+    "mam.client.js": "iotaledger/mam.client.js",
     "node-sass": "^4.11.0",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "@iota/core": "^1.0.0-beta.11",
-    "mam.client.js": "iotaledger/mam.client.js"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
