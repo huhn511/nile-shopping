@@ -1,54 +1,42 @@
 <template>
   <div class="cart">
-    <h1 class="title">Your Cart</h1>
+    <h1 class="title">Your Shopping Cart</h1>
     <p v-show="!products.length">
-    	<i>Your cart is empty!</i>
-    	<router-link to="/products">Go shopping</router-link>
+      <i>Your cart is empty!</i>
+      <router-link to="/products">Go shopping</router-link>
     </p>
-    <table class="table is-striped" v-show="products.length">
-    	<thead>
-    		<tr>
-    			<td>Title</td>
-    			<td>Price</td>
-    			<td>Quantity</td>
-    		</tr>
-    	</thead>
-    	<tbody>
-    		<tr v-for="p in products" v-bind:key="p.id">
-        		<td>{{ p.title }}</td>
-        		<td>{{ p.price }} €</td>
-        		<td>{{ p.quantity }}</td>
-        	</tr>
-        	<tr>
-        		<td><b>Total:</b></td>
-        		<td></td>
-        		<td><b>{{ total }} €</b></td>
-        	</tr>
-    	</tbody>
-
-    </table>
-    <p><button v-show="products.length" class='button is-primary' @click='checkout'>Checkout</button></p>
+    <el-table :data="products" v-show="products.length" style="width: 100%">
+      <el-table-column prop="title" label="Title" width="180"></el-table-column>
+      <el-table-column prop="price" label="Price (in EUR)" width="180"></el-table-column>
+      <el-table-column prop="quantity" label="Quantity"></el-table-column>
+    </el-table>
+    <el-card shadow="always">
+      <b>Total:</b>
+      {{ total }} €
+    </el-card>
+		<br>
+    <el-button @click="checkout" v-show="products.length" type="primary" round>Checkout</el-button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   computed: {
     ...mapGetters({
-      products: 'cartProducts'
+      products: "cartProducts"
     }),
-    total () {
+    total() {
       return this.products.reduce((total, p) => {
-        return total + p.price * p.quantity
-      }, 0)
+        return total + p.price * p.quantity;
+      }, 0);
     }
   },
   methods: {
-  	checkout(){
-  		alert('Pay us ' + this.total + ' €')
-  	}
+    checkout() {
+      alert("Pay us " + this.total + " €");
+    }
   }
-}
+};
 </script>
