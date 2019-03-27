@@ -43,29 +43,16 @@ const actions = {
         })
     },
     fetchShopDetails({ commit }, root ) {
-        console.log("root", root)
         fetchShopDetails(root, 'TEST').then(function (response) {
-            console.log("response", response)
             commit("FETCHED_SHOP_DETAILS", response);
-
-            console.log("cat root", response.catalog_root);
-            fetchCatalog(response.catalog_root, 'TEST').then(function (response) { 
-                console.log("fetchCatalog", response)
-                
+            fetchCatalog(response.catalog_root, 'TEST').then(function (response) {                 
                 response.forEach(item => {
                     if (item.status === "add_blueprint") {
                         fetchProduct(item.data.product).then(function (response) {
-                            console.log("fetchProduct", response)
                             commit("FETCHED_PRODCUT", response);
-
                          })
-
                     }
                 });
-
-
-
-
             })
         })
     }
@@ -87,14 +74,11 @@ const mutations = {
         }
     },
     [types.FETCHED_SHOP_DETAILS](state, shop_details) {
-        console.log("FETCHED_SHOP_DETAILS state", state);
-        console.log("shop_details", shop_details);
         state.shop = shop_details
+        state.all = []
 
     }, 
     [types.FETCHED_PRODCUT](state, product) {
-        console.log("FETCHED_PRODCUT state", state);
-        console.log("product", product);
         state.all.push(product)
 
     },
