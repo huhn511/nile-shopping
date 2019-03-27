@@ -1,25 +1,17 @@
 <template>
 	<div>
 		<h1 class="title">All Products</h1>
-    	<p>{{length}} products</p>
-    	<table class="table is-striped">
-		    <thead>
-		      <tr>
-		        <th>Title</th>
-		        <th>Description</th>
-		        <th>Price</th>
-		        <th></th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <tr v-for="product in products" v-bind:key="product.data.id" track-by="id">
-		        <td>{{product.data.title}}</td>
-		        <td>{{product.data.desc}}</td>
-		        <td>{{product.data.price}} €</td>
-		        <td><button @click='addToCart(product)' class='button is-info'>Add to cart</button></td>
-		      </tr>
-		    </tbody>
-		</table>
+		<p>{{length}} products</p>
+		<el-row :gutter="12" >
+			<el-col :span="8" v-for="product in products" v-bind:key="product.data.id">
+				<el-card shadow="hover">
+					<h3>Title: {{product.data.title}}</h3>
+					<p>{{product.data.desc}}</p>
+					<p>Price: {{product.data.price}}</p>
+					<el-button @click='addToCart(product)' type="primary" round>Add to cart</el-button>
+				</el-card>
+			</el-col>
+		</el-row>
 	</div>
 </template>
 
