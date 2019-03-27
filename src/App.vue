@@ -1,16 +1,27 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" class='container'>
+    <nav-bar></nav-bar>
+    <router-view></router-view>
   </div>
 </template>
 
+<script>
+import NavBar from './components/NavBar.vue'
+  export default {
+    name: 'app',
+    components: {
+      NavBar
+    },
+    data () {
+      return {}
+    }
+  }
+</script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
