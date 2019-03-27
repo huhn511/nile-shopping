@@ -14,7 +14,7 @@
         <span class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
-        <span>Checkout ({{itemsInCart}})</span>
+        <span>Shopping Cart ({{itemsInCart}})</span>
       </el-menu-item>
   </el-menu>
 </template>
