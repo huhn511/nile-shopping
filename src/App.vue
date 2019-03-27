@@ -9,6 +9,8 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
+
+
   export default {
     name: 'app',
     components: {
@@ -18,9 +20,10 @@ import NavBar from './components/NavBar.vue'
       return {}
     },
     created() {
-      let root = "9SSFOA9EPGVZIYATPCITVUNBMWAZL9LUQQFUKYAPKBBENEXPJRLUUTQXPYXKFMUGTTP9UGJGEHUGKDPRJ"
+      console.log(this.$route.query.root)
+      let root = this.$route.query.root || "9SSFOA9EPGVZIYATPCITVUNBMWAZL9LUQQFUKYAPKBBENEXPJRLUUTQXPYXKFMUGTTP9UGJGEHUGKDPRJ"
       this.$store.dispatch("fetchShopDetails", root).then(() => {
-        console.log("This would be printed after dispatch!!")
+        console.log("loaded")
       })
     }
   }
