@@ -1,26 +1,19 @@
 <template>
-  <el-menu
-		:router="true"
-    :default-active="$route.path"
-    class="el-menu-demo"
-    mode="horizontal"
-    @select="handleSelect"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b">
-      <el-menu-item index="/">Home</el-menu-item>
-      <el-menu-item index="products">Discover Products</el-menu-item>
-      <el-menu-item index="cart">
-        <span class="icon">
-          <i class="fa fa-shopping-cart"></i>
-        </span>
+  <nav class="main-nav">
+    <router-link to="/" class="nav-item nav-item--logo" exact-active-class="active">
+      <div class="logo"></div>
+      <span>Home</span>
+    </router-link>
+    <div class="nav-menu">
+      <router-link to="/products" class="nav-item" active-class="active">
+        <span>Products</span>
+      </router-link>
+      <router-link to="/cart" class="nav-item" active-class="active">
         <span>Shopping Cart ({{itemsInCart}})</span>
-      </el-menu-item>
-  </el-menu>
+      </router-link>
+    </div>
+  </nav>
 </template>
-
-<style lang="scss">
-</style>
 
 <script>
 import { mapGetters } from "vuex";
@@ -34,3 +27,93 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white);
+  box-shadow: 0 3px 6px rgba(0,0,0,.15);
+  transition: all 200ms ease-in-out;
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  .nav-item {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--dark);
+    text-decoration: none;
+    opacity: .75;
+    transition: all 200ms ease-in-out;
+    &--logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 15px;
+      .logo {
+        height: 40px;
+        width: 40px;
+        border-radius: 100px;
+        margin-right: 12px;
+        background-color: rgba(0,0,0,.25);
+      }
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      height: 10px;
+      width: 0;
+      border-radius: 10px;
+      transition: all 200ms ease-in-out;
+    }
+    &:hover, &.active {
+      opacity: 1;
+      background-color: rgba(0,0,0,.05);
+      color: var(--secondary-2);
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        height: 10px;
+        width: 50px;
+        border-radius: 10px;
+        background-color: var(--secondary-2);
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      &:before {
+        width: 10px;
+      }
+    }
+  }
+  &.top {
+    background-color: rgba(0,0,0,.1);
+    box-shadow: none;
+    .nav-item {
+      color: var(--white);
+      &--logo {
+        .logo {
+          background-color: var(--white);
+        }
+      }
+    }
+  }
+}
+</style>
