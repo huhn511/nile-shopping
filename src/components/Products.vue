@@ -7,7 +7,7 @@
 				<el-card shadow="hover">
 					<h3>Title: {{product.data.title}}</h3>
 					<p>{{product.data.desc}}</p>
-					<p>Price: {{product.data.price}}</p>
+					<p>Price: {{product.data.price}}€</p>
 					<el-button @click='addToCart(product)' type="primary" round>Add to cart</el-button>
 				</el-card>
 			</el-col>
