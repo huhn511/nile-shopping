@@ -41,7 +41,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  
 }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 62px;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: 42px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 
 .main {
   margin-top: 70px;
