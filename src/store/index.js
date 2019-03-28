@@ -13,7 +13,11 @@ const debug = process.env.NODE_ENV !== 'production'
 const state = {
     added: [],
     all: [],
-    shop: {}
+    shop: {
+        data: {
+            name: ''
+        }
+    }
 }
 
 // getters
