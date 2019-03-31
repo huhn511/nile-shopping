@@ -2,12 +2,15 @@
   "name": "shopping",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://customer-demo.nile.community",
   "scripts": {
     "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi "
+    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@iota/core": "^1.0.0-beta.11",
@@ -25,6 +28,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "gh-pages": "^2.0.1",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
   },
