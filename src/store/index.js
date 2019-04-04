@@ -41,19 +41,18 @@ const getters = {
 // actions
 const actions = {
     addToCart({ commit }, product) {
-        console.log(product)
         commit(types.ADD_TO_CART, {
             id: product.data.id
         })
     },
     fetchShopDetails({ commit }, root ) {
-        fetchShopDetails(root, 'TEST').then(function (response) {
-            commit("FETCHED_SHOP_DETAILS", response);
-            fetchCatalog(response.catalog_root, 'TEST').then(function (response) {                 
-                response.forEach(item => {
+        fetchShopDetails(root, 'TEST').then(function (shop) {
+            commit("FETCHED_SHOP_DETAILS", shop);
+            fetchCatalog(shop.catalog_root, 'TEST').then(function (catalog) {                 
+                catalog.forEach(item => {
                     if (item.status === "add_blueprint") {
-                        fetchProduct(item.data.product).then(function (response) {
-                            commit("FETCHED_PRODCUT", response);
+                        fetchProduct(item.data.product).then(function (product) {
+                            commit("FETCHED_PRODCUT", product);
                          })
                     }
                 });
